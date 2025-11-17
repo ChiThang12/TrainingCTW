@@ -20,6 +20,7 @@ Trong thiết kế phần cứng, FIFO được dùng trong:
 Repo này tập trung vào **FIFO đồng bộ (sync)** chạy cùng 1 clock.
 
 ## 📁 2. Danh sách module
+<img width="554" height="334" alt="image" src="https://github.com/user-attachments/assets/d815ab4a-de21-40a8-a681-918dee6c99c1" />
 
 ### ✅ `sync_fifo_ptr.sv` — Pointer-based FIFO
 
