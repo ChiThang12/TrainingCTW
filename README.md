@@ -1,10 +1,3 @@
-Dưới đây là **README.md chuẩn – súc tích – chuyên nghiệp** dành cho repo chứa **2 module FIFO** của bạn.
-Nội dung được viết theo đúng chuẩn tài liệu kỹ thuật GitHub, đầy đủ mô tả, đặc điểm, cách chạy mô phỏng, ưu/nhược điểm và so sánh.
-
-Bạn chỉ cần copy vào file **README.md**.
-
----
-
 # 📦 Sync FIFO Designs (Pointer-based & Counter-based)
 
 Repository này chứa hai thiết kế FIFO đồng bộ (Synchronous FIFO) được cài đặt bằng Verilog:
@@ -13,9 +6,6 @@ Repository này chứa hai thiết kế FIFO đồng bộ (Synchronous FIFO) đ�
 * **`sync_fifo_cnt`** — FIFO sử dụng **counter** để phát hiện FULL/EMPTY
 
 Hai module đều được viết đơn giản, rõ ràng, dễ mô phỏng và phù hợp cho FPGA/ASIC hoặc mục đích học tập.
-
----
-
 ## 🧩 1. Tổng quan FIFO
 
 FIFO (First-In First-Out) là bộ đệm mà dữ liệu ra theo đúng thứ tự vào.
@@ -28,8 +18,6 @@ Trong thiết kế phần cứng, FIFO được dùng trong:
 * Đồng bộ clock domain (ở FIFO async)
 
 Repo này tập trung vào **FIFO đồng bộ (sync)** chạy cùng 1 clock.
-
----
 
 ## 📁 2. Danh sách module
 
@@ -45,9 +33,6 @@ Repo này tập trung vào **FIFO đồng bộ (sync)** chạy cùng 1 clock.
 * Không dùng counter → tiết kiệm tài nguyên
 * Rất phổ biến trong ASIC/FPGA
 * Đơn giản hóa logic write/read
-
----
-
 ### ✅ `sync_fifo_cnt.sv` — Counter-based FIFO
 
 **Cách phát hiện trạng thái:**
@@ -60,9 +45,6 @@ Repo này tập trung vào **FIFO đồng bộ (sync)** chạy cùng 1 clock.
 * Dễ kiểm soát số lượng phần tử
 * Thuận tiện để thêm `almost_full` / `almost_empty`
 * Code rõ ràng, trực quan
-
----
-
 ## ⚙️ 3. Tham số chung (Parameters)
 
 | Tên      | Ý nghĩa                                   |
@@ -71,9 +53,6 @@ Repo này tập trung vào **FIFO đồng bộ (sync)** chạy cùng 1 clock.
 | `DEPTH`  | Số lượng phần tử trong FIFO               |
 | `ADDR_W` | Số bit địa chỉ, tính bằng `$clog2(DEPTH)` |
 | `CNT_W`  | Số bit counter, dùng trong FIFO counter   |
-
----
-
 ## 🧱 4. Mô tả hoạt động
 
 ### 🔹 Pointer-based FIFO
@@ -86,9 +65,6 @@ Dùng hai con trỏ:
 **Wrap-around** khi đạt cuối FIFO.
 
 Full khi write pointer **chuẩn bị** đè lên read pointer.
-
----
-
 ### 🔹 Counter-based FIFO
 
 Dùng bộ đếm phần tử:
@@ -98,9 +74,6 @@ Dùng bộ đếm phần tử:
 * Không đổi khi vừa write vừa read
 
 Pointer vẫn cần để truy cập memory.
-
----
-
 ## 🆚 5. So sánh hai kiến trúc
 
 | Tiêu chí              | Pointer FIFO  | Counter FIFO        |
@@ -110,9 +83,6 @@ Pointer vẫn cần để truy cập memory.
 | Dễ debug              | Trung bình    | Dễ                  |
 | Dùng trong async FIFO | ✔ Rất phù hợp | ✘ Không phù hợp     |
 | Thêm almost_full      | Khó           | Dễ                  |
-
----
-
 ## 🧪 6. Mô phỏng (Simulation)
 
 Ví dụ chạy bằng Icarus Verilog:
@@ -132,9 +102,6 @@ Testbench cần kiểm thử:
 * Ghi + đọc đồng thời
 * Test wrap-around pointer
 * Đảm bảo không ghi khi FULL, không đọc khi EMPTY
-
----
-
 ## 📂 7. Cấu trúc repo
 
 ```
@@ -149,18 +116,14 @@ Testbench cần kiểm thử:
 └── README.md
 ```
 
----
+## 📜 8. Kết quả thực hiện
+Kết quả dạng sóng
+<img width="1427" height="323" alt="image" src="https://github.com/user-attachments/assets/892e64fa-e13b-4e95-8408-596db82e4412" />
 
-## 📜 8. Giấy phép (License)
+Netlist
+<img width="1422" height="712" alt="image" src="https://github.com/user-attachments/assets/ebd59f10-f53e-4075-b06f-8583e8051081" />
 
-MIT License (hoặc thêm theo ý bạn)
 
----
 
-## 🙌 9. Đóng góp
 
-Mọi đóng góp mở rộng repo (async FIFO, gray-code pointer, AXI-stream FIFO…) đều được chào đón.
 
----
-
-Nếu bạn muốn mình **xuất luôn README.md dưới dạng file** hoặc **thêm hình block diagram ASCII**, mình có thể tạo tiếp!
